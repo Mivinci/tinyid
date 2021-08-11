@@ -33,28 +33,17 @@ func New() Encoder {
 // Encode encodes x to an n-characters string
 func (e Encoder) Encode(x int64, n int) string {
 	b := make([]byte, n)
-	e.enbase(expand(x, e.mask, e.BlockSize), &b)
+	e.enbase(shuffle(x, e.mask, e.BlockSize, reverse), &b)
 	return bstos(b)
 }
 
 // Decode decodes an encoded s to its original 64bit integer
 func (e Encoder) Decode(s string) int64 {
-	return shorten(e.debase(s), e.mask, e.BlockSize)
+	return shuffle(e.debase(s), e.mask, e.BlockSize, recover)
 }
 
-// mask = (1<<bs)-1
-// x = 44 (0010 1100), bs = 5
-// mask = (0001 1111), ^mask = (1110 0000)
-// x & ^mask = (0010 0000)
-// x & mask  = (0000 1100)
-// shuffle(x&mask, bs) = (0000 0110)
-// => r = (0010 0110)
-func expand(x, mask int64, bs int) int64 {
-	return (x & ^mask) | reverse(x&mask, bs)
-}
-
-func shorten(x, mask int64, bs int) int64 {
-	return (x & ^mask) | recover(x&mask, bs)
+func shuffle(x, mask int64, bs int, shuffler func(int64, int) int64) int64 {
+	return (x & ^mask) | shuffler(x&mask, bs)
 }
 
 // x = 44 (0010 1100), bs = 5 (0 <= bs <= 64)

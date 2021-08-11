@@ -40,8 +40,8 @@ goos: darwin
 goarch: amd64
 pkg: github.com/mivinci/tinyid
 cpu: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
-BenchmarkEncoder/Encode-4         	 8662382	       125.4 ns/op	       4 B/op	       1 allocs/op
-BenchmarkEncoder/Decode-4         	13147922	        90.22 ns/op	       0 B/op	       0 allocs/op
+BenchmarkEncoder/Encode-4         	 9526195	       121.7 ns/op	       4 B/op	       1 allocs/op
+BenchmarkEncoder/Decode-4         	14074084	        86.18 ns/op	       0 B/op	       0 allocs/op
 ```
 
 ## Other Portings

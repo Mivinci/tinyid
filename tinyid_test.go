@@ -28,8 +28,8 @@ func ExampleEncoder() {
 	fmt.Println(" origin", i64tos(x))
 	fmt.Println(" x&mask", i64tos(x&mask))
 	fmt.Println("x&^mask", i64tos(x&^mask))
-	fmt.Println("reverse", i64tos(reverse(x&mask, bs)))
-	fmt.Println("encoded", i64tos(expand(x, mask, bs)))
+	fmt.Println("reverse", i64tos(shuffle(x, mask, bs, reverse)))
+	fmt.Println("recover", i64tos(shuffle(x, mask, bs, recover)))
 }
 
 func ExampleEncoder_Encode() {
