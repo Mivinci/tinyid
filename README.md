@@ -7,7 +7,7 @@ the algorithm is deterministic and will guarantee that no collisions will occur.
 
 ## Example
 
-In this example a 64bit number 10000 is encoded to a 4-characters string "R3fu" that's decoded to its original value.
+In this example a 64bit number 10000 is encoded to a 4-characters string "R3fu" that can be decoded back to its original value.
 
 ```go
 import (
